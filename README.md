@@ -86,6 +86,15 @@ contiene mensajes Toast personalidas que tambien van en esta seccion Ademas de c
 # PRODUCT DETAIL
 
 
+# Anexos 
+* Ademas de todo eso Se incoporaron otras cosas
+* Imagnes Responsive para cualquier resolucion de android
+* Se usuaron las lambdas para una mejor legibilidad de codigo
+* Fuente para un mejor diseño 
+* Todas las vistas deben de ser resposive
+* XNK con Constraintlayout para una mejor cobertura y render.
+
+
 
 
 
