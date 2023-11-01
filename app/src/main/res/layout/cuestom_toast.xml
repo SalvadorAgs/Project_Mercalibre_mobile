@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:orientation="horizontal"
+  android:gravity="center"
+  android:background="@drawable/round_corners"
+  android:padding="10dp"
+  android:id="@+id/ll_wrapper"
+  >
+
+  
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/tvCustomDialogForgetPass"
+    android:text="@string/string_empty_user_or_pass"
+    android:textStyle="bold"
+    android:layout_gravity="center_vertical"
+    android:textColor="@color/white"
+    android:textSize="20sp" />
+
+
+  <ImageView
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:id="@+id/iconToastEmptyuserorPass"
+    android:src="@drawable/empty_etiquera"
+    android:layout_marginLeft="10dp"
+    />
+
+
+
+</LinearLayout>

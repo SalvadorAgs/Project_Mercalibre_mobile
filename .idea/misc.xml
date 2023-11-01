@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Prueba_Mercado_Libre/app/src/main/res/drawable/cat_background.xml" value="0.3655" />
+        <entry key="..\:/Prueba_Mercado_Libre/app/src/main/res/drawable/editext_background.xml" value="0.2345" />
+        <entry key="..\:/Prueba_Mercado_Libre/app/src/main/res/drawable/edittext_background.xml" value="0.2345" />
+        <entry key="..\:/Prueba_Mercado_Libre/app/src/main/res/drawable/gradient_background.xml" value="0.2025" />
+        <entry key="..\:/Prueba_Mercado_Libre/app/src/main/res/drawable/orange_button_background.xml" value="0.346" />
+        <entry key="..\:/Prueba_Mercado_Libre/app/src/main/res/drawable/oval_btn_background.xml" value="0.3665" />
+        <entry key="..\:/Prueba_Mercado_Libre/app/src/main/res/drawable/round_corners.xml" value="0.2345" />
+        <entry key="..\:/Prueba_Mercado_Libre/app/src/main/res/layout/activity_dashboard.xml" value="0.25" />
+        <entry key="..\:/Prueba_Mercado_Libre/app/src/main/res/layout/activity_detail_product.xml" value="0.36666666666666664" />
+        <entry key="..\:/Prueba_Mercado_Libre/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
+        <entry key="..\:/Prueba_Mercado_Libre/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Prueba_Mercado_Libre/app/src/main/res/layout/cuestom_toast.xml" value="0.365625" />
+        <entry key="..\:/Prueba_Mercado_Libre/app/src/main/res/layout/slide_item_container.xml" value="0.36666666666666664" />
+        <entry key="..\:/Prueba_Mercado_Libre/app/src/main/res/layout/view_holder_accesorios.xml" value="0.36666666666666664" />
+        <entry key="..\:/Prueba_Mercado_Libre/app/src/main/res/layout/viewholder_category.xml" value="0.18697916666666667" />
+        <entry key="..\:/Prueba_Mercado_Libre/app/src/main/res/layout/viewholder_product.xml" value="0.4219269102990033" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
