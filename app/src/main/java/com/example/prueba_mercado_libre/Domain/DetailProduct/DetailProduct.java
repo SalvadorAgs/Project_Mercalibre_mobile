@@ -2,6 +2,7 @@
 package com.example.prueba_mercado_libre.Domain.DetailProduct;
 
 
+import com.example.prueba_mercado_libre.Domain.DetailProduct.Body;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

@@ -14,7 +14,7 @@ public class Value {
     private String name;
     @SerializedName("struct")
     @Expose
-    private Struct struct;
+    private Object struct;
 
     public Object getId() {
         return id;
@@ -32,11 +32,11 @@ public class Value {
         this.name = name;
     }
 
-    public Struct getStruct() {
+    public Object getStruct() {
         return struct;
     }
 
-    public void setStruct(Struct struct) {
+    public void setStruct(Object struct) {
         this.struct = struct;
     }
 

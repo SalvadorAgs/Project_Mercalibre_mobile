@@ -2,9 +2,6 @@
 package com.example.prueba_mercado_libre.Domain.DetailProduct;
 
 import java.util.List;
-
-import com.example.prueba_mercado_libre.Domain.DetailProduct.Picture;
-import com.example.prueba_mercado_libre.Domain.DetailProduct.SaleTerm;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -33,10 +30,10 @@ public class Body {
     private Integer officialStoreId;
     @SerializedName("price")
     @Expose
-    private Integer price;
+    private Double price;
     @SerializedName("base_price")
     @Expose
-    private Integer basePrice;
+    private Double basePrice;
     @SerializedName("original_price")
     @Expose
     private Object originalPrice;
@@ -142,19 +139,19 @@ public class Body {
         this.officialStoreId = officialStoreId;
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public Integer getBasePrice() {
+    public Double getBasePrice() {
         return basePrice;
     }
 
-    public void setBasePrice(Integer basePrice) {
+    public void setBasePrice(Double basePrice) {
         this.basePrice = basePrice;
     }
 
