@@ -15,8 +15,16 @@ class MainActivity : AppCompatActivity() {
         btnInit.setOnClickListener {
              val intent = Intent(this, Login::class.java)
              startActivity(intent);
+
         }
 
 
     }
+
+
+    override fun finish() {
+        super.finish()
+        this@MainActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
 }

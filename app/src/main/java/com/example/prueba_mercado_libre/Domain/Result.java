@@ -53,7 +53,7 @@ public class Result {
     private Double price;
     @SerializedName("original_price")
     @Expose
-    private Integer originalPrice;
+    private Double originalPrice;
     @SerializedName("sale_price")
     @Expose
     private Object salePrice;
@@ -194,11 +194,11 @@ public class Result {
         this.price = price;
     }
 
-    public Integer getOriginalPrice() {
+    public Double getOriginalPrice() {
         return originalPrice;
     }
 
-    public void setOriginalPrice(Integer originalPrice) {
+    public void setOriginalPrice(Double originalPrice) {
         this.originalPrice = originalPrice;
     }
 

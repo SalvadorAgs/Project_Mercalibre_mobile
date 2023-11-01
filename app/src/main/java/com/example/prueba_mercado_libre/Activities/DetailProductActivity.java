@@ -1,15 +1,19 @@
 package com.example.prueba_mercado_libre.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,11 +27,21 @@ import com.example.prueba_mercado_libre.Adapters.ProductListAdapter;
 import com.example.prueba_mercado_libre.Domain.DetailProduct.DetailProduct;
 import com.example.prueba_mercado_libre.Domain.ListProducts;
 import com.example.prueba_mercado_libre.R;
+import com.google.android.material.animation.MotionTiming;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+
+import www.sanju.motiontoast.MotionToast;
+import www.sanju.motiontoast.MotionToastStyle;
+
+
+
 
 public class DetailProductActivity extends AppCompatActivity {
     private RequestQueue mRequestQueue ;
@@ -35,7 +49,7 @@ public class DetailProductActivity extends AppCompatActivity {
     private ProgressBar progressBarDetailProduct;
     private TextView titleText,priceProduct,wishListProduct,productSummaryInfo, productDesc;
     private String idProduct;
-    private ImageView pic2,backImg;
+    private ImageView pic2,backImg,favoriteImg;
     private RecyclerView.Adapter adaptadorAccesorios, adaptadorTelevision;
     private RecyclerView recyclerViewAccesorios, recyclerViewTelevision;
     private NestedScrollView scrollView;
@@ -63,22 +77,21 @@ public class DetailProductActivity extends AppCompatActivity {
         Gson gson= new Gson();
         progressBarDetailProduct.setVisibility(View.GONE);
         scrollView.setVisibility(View.VISIBLE);
-        DetailProduct items = new Gson().fromJson(response,DetailProduct.class );
+        Type collectionType = new TypeToken<Collection<DetailProduct>>(){}.getType();
+        Collection<DetailProduct> enums2 = gson.fromJson(response, collectionType);
 
         Glide.with(DetailProductActivity.this)
-          .load(items.getBody().getPictures().get(0).getUrl())
+          .load( ((DetailProduct) ((ArrayList) enums2).get(0)).getBody().getPictures().get(0).getUrl())
           .into(pic2);
 
-        titleText.setText(items.getBody().getTitle());
-        priceProduct.setText(items.getBody().getPrice());
-        wishListProduct.setText(items.getBody().getAvailableQuantity());
-        productSummaryInfo.setText(items.getBody().getCurrencyId());
-        productDesc.setText(items.getBody().getCondition());
-        if (items.getBody().getCondition() !=null){
-          List<String> images = new ArrayList<String>();
-          images.addAll(Collections.singleton(items.getBody().getPictures().get(0).getId()));
-          //  adaptadorAccesorios = new AccesorioListAdapter(images);
-        }
+        titleText.setText(((DetailProduct) ((ArrayList) enums2).get(0)).getBody().getTitle());
+        priceProduct.setText(((DetailProduct) ((ArrayList) enums2).get(0)).getBody().getPrice().toString());
+        wishListProduct.setText(((DetailProduct) ((ArrayList) enums2).get(0)).getBody().getAvailableQuantity().toString());
+        productSummaryInfo.setText(((DetailProduct) ((ArrayList) enums2).get(0)).getBody().getCurrencyId().toString());
+        productDesc.setText(((DetailProduct) ((ArrayList) enums2).get(0)).getBody().getBuyingMode());
+
+
+
 
       }
     }, new Response.ErrorListener() {
@@ -99,6 +112,10 @@ public class DetailProductActivity extends AppCompatActivity {
     mStringRequest= new StringRequest(Request.Method.GET, "https://api.mercadolibre.com/sites/MLA/search?q=smartv%20G6", new Response.Listener<String>() {
       @Override
       public void onResponse(String response) {
+        Gson gson= new Gson();
+        progressBarDetailProduct.setVisibility(View.GONE);
+        scrollView.setVisibility(View.VISIBLE);
+
         ListProducts items = new Gson().fromJson(response,ListProducts.class );
         // Toast.makeText(Dashboard.this,response,Toast.LENGTH_LONG);
         //  Log.i("Dash",response.toString());
@@ -122,9 +139,13 @@ public class DetailProductActivity extends AppCompatActivity {
     mStringRequest= new StringRequest(Request.Method.GET, "https://api.mercadolibre.com/sites/MLA/search?q=samsung%20G6", new Response.Listener<String>() {
       @Override
       public void onResponse(String response) {
+        Gson gson= new Gson();
+        progressBarDetailProduct.setVisibility(View.GONE);
+        scrollView.setVisibility(View.VISIBLE);
+
         ListProducts items = new Gson().fromJson(response,ListProducts.class );
         adaptadorTelevision =new ProductListAdapter(items);
-        recyclerViewTelevision.setAdapter(adaptadorTelevision0);
+        recyclerViewTelevision.setAdapter(adaptadorTelevision);
       }
     }, new Response.ErrorListener() {
       @Override
@@ -146,6 +167,7 @@ public class DetailProductActivity extends AppCompatActivity {
     productSummaryInfo = findViewById(R.id.tvDetailSummary);
     productDesc = findViewById(R.id.tv19);
     backImg = findViewById(R.id.backDetail);
+    favoriteImg = findViewById(R.id.imageView2);
     recyclerViewAccesorios = findViewById(R.id.rvDetailProduct);
     recyclerViewAccesorios.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
     recyclerViewTelevision = findViewById(R.id.imagesRecycler);
@@ -154,6 +176,15 @@ public class DetailProductActivity extends AppCompatActivity {
     backImg.setOnClickListener(view -> {
       finish();
     });
-
+    favoriteImg.setOnClickListener(view -> {
+      Drawable drawableId = favoriteImg.getDrawable();
+      if (drawableId ==getDrawable( R.drawable.heart_full)){
+        favoriteImg.setImageResource(R.drawable.fav);
+      }else{
+        favoriteImg.setImageResource(R.drawable.heart_full);
+      }
+      Toast.makeText(DetailProductActivity.this, R.string.add_favorite_product,Toast.LENGTH_SHORT).show();
+    });
   }
+
 }

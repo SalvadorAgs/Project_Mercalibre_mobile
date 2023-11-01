@@ -3,8 +3,8 @@ package com.example.prueba_mercado_libre.Domain.DetailProduct;
 
 import java.util.List;
 
+
 import com.example.prueba_mercado_libre.Domain.DetailProduct.Value;
-import com.example.prueba_mercado_libre.Domain.DetailProduct.ValueStruct;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -24,7 +24,7 @@ public class SaleTerm {
     private String valueName;
     @SerializedName("value_struct")
     @Expose
-    private ValueStruct valueStruct;
+    private Object valueStruct;
     @SerializedName("values")
     @Expose
     private List<Value> values;
@@ -64,11 +64,11 @@ public class SaleTerm {
         this.valueName = valueName;
     }
 
-    public ValueStruct getValueStruct() {
+    public Object getValueStruct() {
         return valueStruct;
     }
 
-    public void setValueStruct(ValueStruct valueStruct) {
+    public void setValueStruct(Object valueStruct) {
         this.valueStruct = valueStruct;
     }
 

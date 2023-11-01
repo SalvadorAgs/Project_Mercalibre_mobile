@@ -62,6 +62,8 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         intent.putExtra("id",items.get(position).getId());
         context.startActivity(intent);
 
+
+
       }
     });
 

@@ -18,4 +18,5 @@
   <string name="string_ofertas">Ofertas</string>
   <string name="week_motorola">Semana Motorola</string>
   <string name="label_categories">Categorias</string>
+  <string name="add_favorite_product">Se agrego el producto a favoritos</string>
 </resources>

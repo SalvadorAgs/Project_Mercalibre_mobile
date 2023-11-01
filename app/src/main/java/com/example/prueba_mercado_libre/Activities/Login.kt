@@ -62,7 +62,8 @@ class Login : AppCompatActivity() {
             }
             else if (userEdt.text.toString().equals("test")&& passEdt.text.toString().equals("test")){
                  val intent = Intent(this, Dashboard::class.java)
-                 startActivity(intent);
+                startActivity(intent);
+
             }
             else if (userEdt.text.toString()!=="test"|| passEdt.text.toString() !=="test"){
                 MotionToast.darkColorToast(
@@ -79,6 +80,13 @@ class Login : AppCompatActivity() {
         }
 
 
+    }
+
+
+
+    override fun finish() {
+        super.finish()
+        this@Login.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 }
 
