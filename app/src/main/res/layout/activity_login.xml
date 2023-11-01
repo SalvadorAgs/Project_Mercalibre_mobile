@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:background="@color/main_color"
+  android:layout_height="match_parent"
+  android:focusable="true"
+  android:focusableInTouchMode="true"
+  tools:context=".Activities.Login">
+
+  <ImageView
+    android:id="@+id/ivLogin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scaleType="fitStart"
+    android:src="@drawable/init_login"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <ImageView
+    android:id="@+id/gradiemtLogin"
+    android:layout_width="0dp"
+    android:layout_height="100dp"
+    android:src="@drawable/gradient_background"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
+
+  <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+      <TextView
+        android:id="@+id/tvLogin1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:textColor="@color/white"
+        android:text="@string/et_login"
+        android:layout_marginTop="128dp"
+        android:layout_marginStart="32dp"
+        android:textStyle="bold"
+        />
+
+      <EditText
+        android:id="@+id/ediTextUserLogin"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/label_ed_user"
+        android:textColor="@color/white"
+        android:inputType="text"
+        android:ems="10"
+        android:background="@drawable/editext_background"
+        android:layout_marginTop="128dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:textAlignment="center"
+        android:textColorHint="@color/white"
+        />
+
+      <EditText
+        android:id="@+id/ediTextPasswordLogin"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/label_ed_password"
+        android:textColor="@color/white"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:background="@drawable/editext_background"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:textAlignment="center"
+        android:textColorHint="@color/white"
+        />
+
+      <TextView
+        android:id="@+id/tvForgetPaswword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:text="@string/label_forgotten_pass"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="16dp"
+        android:textStyle="bold"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+      android:id="@+id/btnLogin"
+      android:background="@drawable/orange_button_background"
+      android:layout_marginTop="64dp"
+      android:layout_marginStart="32dp"
+      android:layout_marginEnd="32dp"
+      android:textSize="18sp"
+      android:textStyle="bold"
+      android:textColor="@color/white"
+      android:text="@string/string_entrar"
+      style="@android:style/Widget.Button"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+
+      />
+
+      <TextView
+        android:id="@+id/tvDontHaveAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:text="@string/string_dont_have_account"
+        android:layout_marginTop="32dp"
+        />
+      <TextView
+        android:id="@+id/tvRegisterNow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:text="@string/string_registro_bow"
+        />
+
+
+
+    </LinearLayout>
+  </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

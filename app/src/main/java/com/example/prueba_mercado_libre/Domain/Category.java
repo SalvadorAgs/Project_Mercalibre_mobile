@@ -1,0 +1,23 @@
+
+package com.example.prueba_mercado_libre.Domain;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
+
+public class Category {
+
+
+    private List<CategoryItems> categoryItemsList;
+
+
+    public List<CategoryItems> getCategoryItemsList() {
+        return categoryItemsList;
+    }
+
+    public void setCategoryItemsList(List<CategoryItems> categoryItemsList) {
+        this.categoryItemsList = categoryItemsList;
+    }
+}

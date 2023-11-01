@@ -1,0 +1,21 @@
+<resources>
+  <string name="app_name">Prueba_Mercado_Libre</string>
+  <string name="eslogan_mercado_libre">¡Lo mejor está por llegar!</string>
+  <string name="lema">¡Lo mejor está por llegar!</string>
+  <string name="sub_lema">Todo lo que buscas a un CLICK</string>
+  <string name="name_inicio">Inicio</string>
+  <string name="et_login">Log-In</string>
+  <string name="label_ed_user">Usuario</string>
+  <string name="label_ed_password">Contraseña</string>
+  <string name="label_forgotten_pass">¿Olvidaste tu contraseña?</string>
+  <string name="string_entrar">Entrar</string>
+  <string name="string_dont_have_account">¿No tienes Una Cuenta?</string>
+  <string name="string_registro_bow">Registrate Ahora</string>
+  <string name="string_empty_user_or_pass">Usuario o Contraseña Estan Vacios</string>
+  <string name="strings_search_products">Buscando Productos....</string>
+  <string name="string_best_products">Mejores Ofertas</string>
+  <string name="string_categoriies">Categorias</string>
+  <string name="string_ofertas">Ofertas</string>
+  <string name="week_motorola">Semana Motorola</string>
+  <string name="label_categories">Categorias</string>
+</resources>
