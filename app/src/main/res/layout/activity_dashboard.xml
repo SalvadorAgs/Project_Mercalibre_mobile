@@ -18,7 +18,13 @@
       android:layout_height="wrap_content"
       android:orientation="vertical">
 
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+
       <EditText
+        android:id="@+id/edSearchDashboard"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:ems="10"
@@ -27,11 +33,28 @@
         android:drawableStart="@drawable/search"
         android:layout_margin="16dp"
         android:drawablePadding="8dp"
+        android:textColor="@color/white"
         android:padding="12dp"
-        android:drawableEnd="@drawable/microphone"
         android:hint="@string/strings_search_products"
         android:textColorHint="@color/white"
+        android:layout_weight="0.9"
         />
+
+
+      <ImageView
+        android:id="@+id/ivmicrophone"
+        android:layout_width="@dimen/dimen_24"
+        android:layout_height="@dimen/dimen_24"
+        android:background="@drawable/oval_btn_background"
+        android:layout_margin="10dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="0."
+        android:src="@drawable/microphone"
+        app:tint="@color/white"
+
+        />
+    </LinearLayout>
 
       <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
