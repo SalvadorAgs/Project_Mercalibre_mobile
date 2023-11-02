@@ -1,15 +1,19 @@
 package com.example.prueba_mercado_libre.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -28,6 +32,7 @@ import com.example.prueba_mercado_libre.Domain.DetailProduct.DetailProduct;
 import com.example.prueba_mercado_libre.Domain.ListProducts;
 import com.example.prueba_mercado_libre.R;
 import com.google.android.material.animation.MotionTiming;
+import androidx.appcompat.app.AlertDialog;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -59,7 +64,11 @@ public class DetailProductActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_detail_product);
 
-    idProduct= getIntent().getStringExtra("id");
+    if (getIntent().getStringExtra("id")==null){
+      idProduct = "";
+    }else {
+      idProduct = getIntent().getStringExtra("id");
+    }
     initView();
     sendRequestSProductsSamsung();
     sendRequest();
@@ -80,18 +89,27 @@ public class DetailProductActivity extends AppCompatActivity {
         Type collectionType = new TypeToken<Collection<DetailProduct>>(){}.getType();
         Collection<DetailProduct> enums2 = gson.fromJson(response, collectionType);
 
-        Glide.with(DetailProductActivity.this)
-          .load( ((DetailProduct) ((ArrayList) enums2).get(0)).getBody().getPictures().get(0).getUrl())
-          .into(pic2);
+        if (((DetailProduct) ((ArrayList) enums2).get(0)).getBody().getTitle()==null){
+          showErrorDialog();
 
-        titleText.setText(((DetailProduct) ((ArrayList) enums2).get(0)).getBody().getTitle());
-        priceProduct.setText(((DetailProduct) ((ArrayList) enums2).get(0)).getBody().getPrice().toString());
-        wishListProduct.setText(((DetailProduct) ((ArrayList) enums2).get(0)).getBody().getAvailableQuantity().toString());
-        productSummaryInfo.setText(((DetailProduct) ((ArrayList) enums2).get(0)).getBody().getCurrencyId().toString());
-        productDesc.setText(((DetailProduct) ((ArrayList) enums2).get(0)).getBody().getBuyingMode());
+        }
+      else {
+          Glide.with(DetailProductActivity.this)
+            .load(((DetailProduct) ((ArrayList) enums2).get(0)).getBody().getPictures().get(0).getUrl())
+            .into(pic2);
+          titleText.setText(((DetailProduct) ((ArrayList) enums2).get(0)).getBody().getTitle());
+          priceProduct.setText(((DetailProduct) ((ArrayList) enums2).get(0)).getBody().getPrice().toString());
+          if (((DetailProduct) ((ArrayList) enums2).get(0)).getBody().getAvailableQuantity()==null){
+            wishListProduct.setText("$$$$$");
+
+          }else{
+            wishListProduct.setText(((DetailProduct) ((ArrayList) enums2).get(0)).getBody().getAvailableQuantity().toString());
+          }
+          productSummaryInfo.setText(((DetailProduct) ((ArrayList) enums2).get(0)).getBody().getCurrencyId().toString());
+          productDesc.setText(((DetailProduct) ((ArrayList) enums2).get(0)).getBody().getBuyingMode());
 
 
-
+        }
 
       }
     }, new Response.ErrorListener() {
@@ -104,6 +122,35 @@ public class DetailProductActivity extends AppCompatActivity {
     mRequestQueue.add(mStringRequest);
   }
 
+  private void showErrorDialog(){
+    AlertDialog.Builder builder = new AlertDialog.Builder(DetailProductActivity.this, R.style.AlertDialogTheme);
+    View view = LayoutInflater.from(DetailProductActivity.this).inflate(
+      R.layout.layout_error_dailog,
+      (ConstraintLayout)findViewById(R.id.layoutDialogContainer)
+    );
+    builder.setView(view);
+    ((TextView) view.findViewById(R.id.textTitle)).setText(getResources().getString(R.string.error_title));
+    ((TextView) view.findViewById(R.id.textMessage)).setText(getResources().getString(R.string.dummy_text));
+    ((Button) view.findViewById(R.id.buttonAction)).setText(getResources().getString(R.string.okay));
+    ((ImageView) view.findViewById(R.id.imageIcon)).setImageResource(R.drawable.error);
+
+    final AlertDialog alertDialog = builder.create();
+
+    view.findViewById(R.id.buttonAction).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        alertDialog.dismiss();
+        onBackPressed();
+        //Toast.makeText(DetailProductActivity.this, "Error", Toast.LENGTH_SHORT).show();
+      }
+    });
+
+    if (alertDialog.getWindow() != null){
+      alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+    }
+    alertDialog.setCanceledOnTouchOutside(false);
+    alertDialog.show();
+  }
   private void sendRequestSProductsSimilares() {
     mRequestQueue= Volley.newRequestQueue(this);
     progressBarDetailProduct.setVisibility(View.VISIBLE);

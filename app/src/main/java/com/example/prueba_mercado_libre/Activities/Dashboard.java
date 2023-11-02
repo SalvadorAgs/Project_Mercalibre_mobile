@@ -1,6 +1,7 @@
 package com.example.prueba_mercado_libre.Activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,11 +15,19 @@ import com.example.prueba_mercado_libre.Domain.CategoryItems;
 import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -37,17 +46,22 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Dashboard extends AppCompatActivity {
   private ViewPager2 viewPager2;
   private Handler slideHandler= new Handler();
+  private ImageView ivMicrophone ;
+  private EditText edSearchDashboard ;
   private RequestQueue mRequestQueue;
   private StringRequest mStringRequest,mStringRequest2,mStringRequest3;
   private ProgressBar loadingBestProducts, loadingOfertas, loadingCategorias;
   RecyclerView.Adapter adapterBestProducts,adapterOfertas, adapterCategorias;
   private RecyclerView recyclerViewBestProducts, recyclerViewOfertas, recyclerViewCategorias;
+  private int RO_SPEECH_REC =102;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -209,8 +223,59 @@ public class Dashboard extends AppCompatActivity {
     loadingBestProducts = findViewById(R.id.pbDashBoard);
     loadingOfertas = findViewById(R.id.pbDiscountsDashBoard);
     loadingCategorias = findViewById(R.id.pbCategoryDashBoard);
+    ivMicrophone = findViewById(R.id.ivmicrophone);
+    edSearchDashboard = findViewById(R.id.edSearchDashboard);
+
+    ivMicrophone.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        try {
+          askSpeechInput();
+        } catch (URISyntaxException e) {
+          e.printStackTrace();
+        }
+      }
+    });
+    edSearchDashboard.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+      @Override
+      public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        Intent intent = new Intent(Dashboard.this, DetailProductActivity.class);
+        intent.putExtra("id",edSearchDashboard.getText().toString());
+        startActivity(intent);
+        return false;
+
+
+      }
+    });
 
 
 
+
+
+
+
+  }
+
+  private void askSpeechInput() throws URISyntaxException {
+    if (!SpeechRecognizer.isRecognitionAvailable(this)){
+      Toast.makeText(this, "El microfono no se encuentra disponible",Toast.LENGTH_LONG).show();
+    }else{
+      Intent intentSpeech = Intent.getIntent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+      intentSpeech.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+      intentSpeech.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+      intentSpeech.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say something!");
+      startActivity(intentSpeech);
+
+
+    }
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if (requestCode== RO_SPEECH_REC && resultCode== Activity.RESULT_OK){
+      ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+      edSearchDashboard.setText(result.get(0).toString());
+    }
   }
 }

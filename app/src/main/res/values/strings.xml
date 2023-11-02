@@ -12,11 +12,26 @@
   <string name="string_dont_have_account">¿No tienes Una Cuenta?</string>
   <string name="string_registro_bow">Registrate Ahora</string>
   <string name="string_empty_user_or_pass">Usuario o Contraseña Estan Vacios</string>
-  <string name="strings_search_products">Buscando Productos....</string>
+  <string name="strings_search_products">Buscando Productos Por ID....</string>
   <string name="string_best_products">Mejores Ofertas</string>
   <string name="string_categoriies">Categorias</string>
   <string name="string_ofertas">Ofertas</string>
   <string name="week_motorola">Semana Motorola</string>
   <string name="label_categories">Categorias</string>
   <string name="add_favorite_product">Se agrego el producto a favoritos</string>
-</resources>
+  <string name="close_app">Close app</string>
+<string name="dialog_message">No se encontro</string>
+<string name="dialog_title">Sin Encontrar</string>
+<string name="success">Success</string>
+<string name="warning">Warning</string>
+<string name="error">Error</string>
+
+<string name="success_title">Success Title</string>
+<string name="warning_title">Warning Title</string>
+<string name="error_title">Producto No Encontrado</string>
+<string name="dummy_text">No se encontro el producto escrito intenta con un nuevo texto.</string>
+<string name="okay">Cerrar</string>
+<string name="yes">Yes</string>
+<string name="no">No</string>
+
+  </resources>
